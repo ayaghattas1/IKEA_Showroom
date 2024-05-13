@@ -1,0 +1,11 @@
+Model Information:
+* title:	Kitchen Design Set V.001
+* source:	https://sketchfab.com/3d-models/kitchen-design-set-v001-47e74e0fab8f43a1b88cbfc0d7f9989f
+* author:	Truong Arch (https://sketchfab.com/kiemtruongkts)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Kitchen Design Set V.001" (https://sketchfab.com/3d-models/kitchen-design-set-v001-47e74e0fab8f43a1b88cbfc0d7f9989f) by Truong Arch (https://sketchfab.com/kiemtruongkts) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

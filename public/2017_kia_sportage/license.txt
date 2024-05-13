@@ -1,0 +1,11 @@
+Model Information:
+* title:	2017 KIA Sportage
+* source:	https://sketchfab.com/3d-models/2017-kia-sportage-73fe06150f17452c84cd62961c4568a1
+* author:	iSteven (https://sketchfab.com/OneSteven)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "2017 KIA Sportage" (https://sketchfab.com/3d-models/2017-kia-sportage-73fe06150f17452c84cd62961c4568a1) by iSteven (https://sketchfab.com/OneSteven) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Bedroom Interior
+* source:	https://sketchfab.com/3d-models/bedroom-interior-082a0fa7766448b8ad68202367cb27c1
+* author:	ankitk2618 (https://sketchfab.com/ankitk2618)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Bedroom Interior" (https://sketchfab.com/3d-models/bedroom-interior-082a0fa7766448b8ad68202367cb27c1) by ankitk2618 (https://sketchfab.com/ankitk2618) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
