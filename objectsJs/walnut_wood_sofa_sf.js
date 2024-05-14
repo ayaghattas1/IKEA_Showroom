@@ -10,12 +10,12 @@ const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer();
 document.body.appendChild(renderer.domElement);
 renderer.setSize( width, height );
-const camera = new THREE.PerspectiveCamera( 30, width / height , 0.1, 1000 );
+const camera = new THREE.PerspectiveCamera( 36, width / height , 0.1, 1000 );
 const sceneLimitXMin = -100;
 const sceneLimitXMax = 100;
 const sceneLimitZMin = -100;
 const sceneLimitZMax = 100;
-const clock = new THREE.Clock(); // N'oubliez pas d'initialiser la clock quelque part dans votre code
+const clock = new THREE.Clock(); 
 const planeGeometry = new THREE.PlaneGeometry(1000, 1000);
 const planeMaterial = new THREE.MeshBasicMaterial({ visible: false });
 const plane = new THREE.Mesh(planeGeometry, planeMaterial);
@@ -130,43 +130,7 @@ function updateCameraPosition(delta) {
 renderer.shadowMap.enabled = true
 document.getElementById("three").
 appendChild( renderer.domElement );
-const colors = document.querySelectorAll('.color')
-const selectColor = (color)=>{
-    switch(color){
-        case "white":
-        return {r:1,g:1,b:1}
-        break
-        case "red":
-        return {r:1,g:0,b:0}
-        break
-        case "blue":
-        return {r: 0, g: 0, b: .9}
-        break
-        case "orange":
-        return {r: 1, g: 0.3, b: 0}
-        break
-        case "black":
-        return {r:0,g:0,b:0}
-        break
-    }
-}
-colors.forEach(el=>{
-    console.log(el)
-    el.addEventListener('click',(e)=>{
-        color = e.target.id
-        color = selectColor(color)
-         carModel.traverse((node)=>{
-        if(node.isMesh){
-            console.log(node.name)
-            let name = node.name.split('_')
-            if(name[1] === "beskyttemottyveri"){
-                gsap.to(node.material.color,{duration:2, r:color.r,g:color.g,b:color.b, ease:"sine.out"})
-                 //node.material.color.set(color)
-            }
-        }
-    })
-    })
-})
+
 // lighting
 const light = new THREE.AmbientLight( 0xcccccc );
 scene.add( light );
@@ -189,14 +153,14 @@ dirLight.shadow.camera.right = 1
 dirLight.shadow.camera.right = -10
 dirLight.shadow.camera.top = 1
 dirLight.shadow.camera.bottom = -10
-dirLight.shadow.mapSize.width = 1024
+dirLight.shadow.mapSize.width = 2024
 dirLight.shadow.mapSize.height = 1024
 scene.add(dirLight)
 
 scene.background = new THREE.Color("rgb(245, 245, 220)")
-camera.position.set(0.1, 3, -1)
-//(25, 3, -8)
-//camera.lookAt(5, 1.5, 7)
+camera.position.set(9, 2, 19)
+//camera.lookAt(5, 2, 17.5)
+
 // loading models
 let loadingIndicator = document.querySelector('.ld-ripple-container') 
 let loadingProgress = document.querySelector('.progress')
@@ -277,44 +241,11 @@ loader.load("/main_scene/scene.gltf", (gltf)=>{
 });
 
 
-loader.load('../kitchen/scene.gltf',(gltf)=>{
+loader.load('../walnut_wood_sofa_sf.001/scene.gltf',(gltf)=>{
         const model = gltf.scene;
-        let sofaColor = {r:1, g:1, b:1}; // Couleur de départ du canapé
-        model.traverse((child) => {
-            if (child.isMesh) {
-                // Vérifiez si le matériau est basé sur MeshStandardMaterial
-                if (child.material.isMeshStandardMaterial) {
-                    // Assurez-vous que le matériau ait une propriété de couleur
-                    if (child.material.color) {
-                        // Appliquer la couleur initiale
-                        child.material.color.set(sofaColor);
-                    }
-                }
-            }
-        });
     
-        colors.forEach(el => {
-            el.addEventListener('click', (e) => {
-                // Mettez à jour la couleur du canapé lorsque vous cliquez sur une couleur
-                const colorName = e.target.id;
-                sofaColor = selectColor(colorName);
-                model.traverse((child) => {
-                    if (child.isMesh) {
-                        // Vérifiez si le matériau est basé sur MeshStandardMaterial
-                        if (child.material.isMeshStandardMaterial) {
-                            // Assurez-vous que le matériau ait une propriété de couleur
-                            if (child.material.color) {
-                                // Appliquer la nouvelle couleur
-                                gsap.to(child.material.color, { duration: 2, r: sofaColor.r, g: sofaColor.g, b: sofaColor.b, ease: "sine.out" });
-                            }
-                        }
-                    }
-                });
-            });
-        });
-    
-        model.position.set(11, 0.13, 3)
-        model.rotation.set(0, -2, 0)
+        model.position.set(2, -0.46, 10.5)
+        model.rotation.set(0, 13, 0)
         model.scale.set(0.05, 0.05, 0.05);    
         model.castShadow = true
         controls.target.copy(model.position)
@@ -328,7 +259,6 @@ loader.load('../kitchen/scene.gltf',(gltf)=>{
 function animate() {
     const delta = clock.getDelta();
     updateCameraPosition(delta);
-    //moveCameraWithKeys();
 	requestAnimationFrame( animate );
     controls.update()
 	renderer.render( scene, camera );

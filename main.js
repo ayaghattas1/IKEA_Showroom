@@ -182,6 +182,39 @@ spotLight.shadow.mapSize.width = 1024
 spotLight.shadow.mapSize.height = 1024
 scene.add(spotLight)
 
+const spotLight2 = new THREE.SpotLight(0xffffff, 60);
+spotLight2.angle = Math.PI;
+spotLight2.penumbra = 0.2;
+spotLight2.position.set(-20, 3, -6.5);  // Position différente de la première lumière
+spotLight2.castShadow = true;
+spotLight2.shadow.camera.near = 1;
+spotLight2.shadow.camera.far = 30;
+spotLight2.shadow.mapSize.width = 2524;
+spotLight2.shadow.mapSize.height = 1024;
+scene.add(spotLight2);
+
+const spotLight3 = new THREE.SpotLight(0xffffff, 60);
+spotLight3.angle = Math.PI;
+spotLight3.penumbra = 0.2;
+spotLight3.position.set(11, 3, -22);  // Position différente de la première lumière
+spotLight3.castShadow = true;
+spotLight3.shadow.camera.near = 1;
+spotLight3.shadow.camera.far = 30;
+spotLight3.shadow.mapSize.width = 2524;
+spotLight3.shadow.mapSize.height = 1024;
+scene.add(spotLight3);
+
+const spotLight4 = new THREE.SpotLight(0xffffff, 60);
+spotLight4.angle = Math.PI;
+spotLight4.penumbra = 0.2;
+spotLight4.position.set(-6, 3, -12); 
+spotLight4.castShadow = true;
+spotLight4.shadow.camera.near = 1;
+spotLight4.shadow.camera.far = 30;
+spotLight4.shadow.mapSize.width = 2524;
+spotLight4.shadow.mapSize.height = 1024;
+scene.add(spotLight4);
+
 const dirLight = new THREE.DirectionalLight(0x55505a, 3)
 dirLight.position.set(0, 5 , 0)
 dirLight.castShadow = true;
@@ -281,9 +314,9 @@ loader.load("/main_scene/scene.gltf", (gltf)=>{
 loader.load('/2017_kia_sportage/scene.gltf',(gltf)=>{
     const model = gltf.scene
    carModel = model
-    model.position.set(2, 0.13, 10)
-    model.rotation.set(0, 2.1, 0)
-    model.scale.set(1.3,1.3,1.3)
+   model.position.set(4.5, 1.39, 4)
+    model.rotation.set(0, 0.1, 0)
+    model.scale.set(0.025,0.025,0.025)
     model.castShadow = true
     controls.target.copy(model.position)
 
@@ -316,8 +349,8 @@ loader.load('/2017_kia_sportage/scene.gltf',(gltf)=>{
 loader.load('/man_win/scene.gltf',(gltf)=>{
     const model = gltf.scene
    carModel = model
-    model.position.set(4, 0.13, 10)
-    model.rotation.set(0, -0.1, 0)
+    model.position.set(8, 0.13, 4)
+    model.rotation.set(0, -0.06, 0)
     model.scale.set(0.18, 0.18, 0.18)
     model.castShadow = true
     controls.target.copy(model.position)
@@ -366,9 +399,9 @@ loader.load('/kitchen/scene.gltf', (gltf) => {
     const model = gltf.scene;
     
     //Position, rotate, and scale the tree
-    model.position.set(3, 0.13, 10)
-    model.rotation.set(0, -0.60, 0)
-    model.scale.set(0.05, 0.05, 0.05);
+    model.position.set(-5, 0.13, 10)
+    model.rotation.set(0, -0.10, 0)
+    model.scale.set(0.08, 0.08, 0.08);
     model.castShadow = true
     controls.target.copy(model.position)// Example scale
 
@@ -406,8 +439,8 @@ loader.load('/set_sofa_v.001/scene.gltf', (gltf) => {
     
     // Position, rotate, and scale the tree
     //model.position.set(0, -0.13, 10) centre 
-    model.position.set(10, -0.13, 10)
-    model.rotation.set(0, -1, 0)
+    model.position.set(-20, 0.08, -6)
+    model.rotation.set(0, 0.4, 0)
     model.scale.set(0.05, 0.05, 0.05);  
     
     // Add the tree to the scene
@@ -482,7 +515,7 @@ loader.load('/set_directors_desk_v.002/scene.gltf', (gltf) => {
     
     // Position, rotate, and scale the tree
     //model.position.set(0, -0.13, 10) centre 
-    model.position.set(10, -0.13, 10)
+    model.position.set(-20, -0.13, -40)
     model.rotation.set(0, -1, 0)
     model.scale.set(0.05, 0.05, 0.05);  
     
@@ -510,6 +543,80 @@ loader.load('/set_directors_desk_v.002/scene.gltf', (gltf) => {
          if (intersects.length > 0) {
             // window.location.href = ('/pages/bed.html',' _blank'); 
              window.open('/pages/set_directors_desk_v.html', '_blank'); // Open in a new tab
+
+         }
+     }
+});
+
+loader.load('/simple_house_-_kitchen/scene.gltf', (gltf) => {
+    const model = gltf.scene;
+    
+    model.position.set(30, 0.7, 25)
+    model.rotation.set(0, 0, 0)
+    model.scale.set(1.5, 1.5, 1.5);   
+    
+    // Add the tree to the scene
+    scene.add(model);
+
+     // Add event listener to the renderer element
+     renderer.domElement.addEventListener('click', handleClick);
+
+     function handleClick(event) {
+         // Get mouse coordinates relative to the renderer element
+         const mouse = {
+             x: (event.clientX / renderer.domElement.clientWidth) * 2 - 1,
+             y: -(event.clientY / renderer.domElement.clientHeight) * 2 + 1,
+         };
+ 
+         // Set up raycaster
+         const raycaster = new THREE.Raycaster();
+         raycaster.setFromCamera(mouse, camera);
+ 
+         // Check for intersections
+         const intersects = raycaster.intersectObjects([model], true);
+ 
+         // If model is clicked, navigate to another HTML page
+         if (intersects.length > 0) {
+            // window.location.href = ('/pages/bed.html',' _blank'); 
+             window.open('/pages/simple_house_-_kitchen.html', '_blank'); // Open in a new tab
+
+         }
+     }
+});
+
+loader.load('/walnut_wood_sofa_sf.001/scene.gltf', (gltf) => {
+    const model = gltf.scene;
+    
+    // Position, rotate, and scale the tree
+    //model.position.set(0, -0.13, 10) centre 
+    model.position.set(-10, -0.46, -6.5)
+    model.rotation.set(0, 0.4, 0)
+    model.scale.set(0.05, 0.05, 0.05);  
+    
+    // Add the tree to the scene
+    scene.add(model);
+
+     // Add event listener to the renderer element
+     renderer.domElement.addEventListener('click', handleClick);
+
+     function handleClick(event) {
+         // Get mouse coordinates relative to the renderer element
+         const mouse = {
+             x: (event.clientX / renderer.domElement.clientWidth) * 2 - 1,
+             y: -(event.clientY / renderer.domElement.clientHeight) * 2 + 1,
+         };
+ 
+         // Set up raycaster
+         const raycaster = new THREE.Raycaster();
+         raycaster.setFromCamera(mouse, camera);
+ 
+         // Check for intersections
+         const intersects = raycaster.intersectObjects([model], true);
+ 
+         // If model is clicked, navigate to another HTML page
+         if (intersects.length > 0) {
+            // window.location.href = ('/pages/bed.html',' _blank'); 
+             window.open('/pages/walnut_wood_sofa_sf.html', '_blank'); // Open in a new tab
 
          }
      }

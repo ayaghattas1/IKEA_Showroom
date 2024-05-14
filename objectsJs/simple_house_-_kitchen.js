@@ -10,7 +10,7 @@ const scene = new THREE.Scene();
 const renderer = new THREE.WebGLRenderer();
 document.body.appendChild(renderer.domElement);
 renderer.setSize( width, height );
-const camera = new THREE.PerspectiveCamera( 30, width / height , 0.1, 1000 );
+const camera = new THREE.PerspectiveCamera( 36, width / height , 0.1, 1000 );
 const sceneLimitXMin = -100;
 const sceneLimitXMax = 100;
 const sceneLimitZMin = -100;
@@ -194,9 +194,8 @@ dirLight.shadow.mapSize.height = 1024
 scene.add(dirLight)
 
 scene.background = new THREE.Color("rgb(245, 245, 220)")
-camera.position.set(0.1, 3, -1)
-//(25, 3, -8)
-//camera.lookAt(5, 1.5, 7)
+camera.position.set(5, 3, 17)
+// camera.lookAt(2,0.13,10)
 // loading models
 let loadingIndicator = document.querySelector('.ld-ripple-container') 
 let loadingProgress = document.querySelector('.progress')
@@ -277,7 +276,7 @@ loader.load("/main_scene/scene.gltf", (gltf)=>{
 });
 
 
-loader.load('../kitchen/scene.gltf',(gltf)=>{
+loader.load('../simple_house_-_kitchen/scene.gltf',(gltf)=>{
         const model = gltf.scene;
         let sofaColor = {r:1, g:1, b:1}; // Couleur de départ du canapé
         model.traverse((child) => {
@@ -313,13 +312,13 @@ loader.load('../kitchen/scene.gltf',(gltf)=>{
             });
         });
     
-        model.position.set(11, 0.13, 3)
-        model.rotation.set(0, -2, 0)
-        model.scale.set(0.05, 0.05, 0.05);    
+        model.position.set(28, 0.7, 28.5)
+        model.rotation.set(0, 0, 0)
+        model.scale.set(1.5, 1.5, 1.5);    
+
         model.castShadow = true
         controls.target.copy(model.position)
-    
-    
+       
     // Add the tree to the scene
     scene.add(model);
 
@@ -342,4 +341,3 @@ window.onresize = function(){
 
 
 animate();
-

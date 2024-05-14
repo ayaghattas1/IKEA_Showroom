@@ -6,7 +6,6 @@
   "scripts": {
 "dev": "vite"  
 },
-  "author": "Arman Grema",
   "license": "ISC",
   "dependencies": {
     "gsap": "^3.12.5",
