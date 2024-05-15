@@ -168,52 +168,28 @@ colors.forEach(el=>{
     })
 })
 // lighting
-const light = new THREE.AmbientLight( 0xcccccc );
-scene.add( light );
+function addSpotLight(scene, color, intensity, angle, penumbra, position, shadowMapWidth, shadowMapHeight) {
+    const spotLight = new THREE.SpotLight(color, intensity);
+    spotLight.angle = angle;
+    spotLight.penumbra = penumbra;
+    spotLight.position.set(...position);
+    spotLight.castShadow = true;
+    spotLight.shadow.camera.near = 1;
+    spotLight.shadow.camera.far = 30;
+    spotLight.shadow.mapSize.width = shadowMapWidth;
+    spotLight.shadow.mapSize.height = shadowMapHeight;
+    scene.add(spotLight);
+}
 
-const spotLight = new THREE.SpotLight(0xffffff, 60)
-spotLight.angle = Math.PI
-spotLight.penumbra = 0.2
-spotLight.position.set(5, 3, 5)
-spotLight.castShadow = true
-spotLight.shadow.camera.near = 1
-spotLight.shadow.camera.far = 30
-spotLight.shadow.mapSize.width = 1024
-spotLight.shadow.mapSize.height = 1024
-scene.add(spotLight)
+// Éclairage ambiant
+const ambientLight = new THREE.AmbientLight(0xcccccc);
+scene.add(ambientLight);
 
-const spotLight2 = new THREE.SpotLight(0xffffff, 60);
-spotLight2.angle = Math.PI;
-spotLight2.penumbra = 0.2;
-spotLight2.position.set(-20, 3, -6.5);  // Position différente de la première lumière
-spotLight2.castShadow = true;
-spotLight2.shadow.camera.near = 1;
-spotLight2.shadow.camera.far = 30;
-spotLight2.shadow.mapSize.width = 2524;
-spotLight2.shadow.mapSize.height = 1024;
-scene.add(spotLight2);
-
-const spotLight3 = new THREE.SpotLight(0xffffff, 60);
-spotLight3.angle = Math.PI;
-spotLight3.penumbra = 0.2;
-spotLight3.position.set(11, 3, -22);  // Position différente de la première lumière
-spotLight3.castShadow = true;
-spotLight3.shadow.camera.near = 1;
-spotLight3.shadow.camera.far = 30;
-spotLight3.shadow.mapSize.width = 2524;
-spotLight3.shadow.mapSize.height = 1024;
-scene.add(spotLight3);
-
-const spotLight4 = new THREE.SpotLight(0xffffff, 60);
-spotLight4.angle = Math.PI;
-spotLight4.penumbra = 0.2;
-spotLight4.position.set(-6, 3, -12); 
-spotLight4.castShadow = true;
-spotLight4.shadow.camera.near = 1;
-spotLight4.shadow.camera.far = 30;
-spotLight4.shadow.mapSize.width = 2524;
-spotLight4.shadow.mapSize.height = 1024;
-scene.add(spotLight4);
+// Ajout des SpotLights
+addSpotLight(scene, 0xffffff, 60, Math.PI, 0.2, [5, 3, 5], 1024, 1024);
+addSpotLight(scene, 0xffffff, 60, Math.PI, 0.2, [-20, 3, -6.5], 2524, 1024);
+addSpotLight(scene, 0xffffff, 60, Math.PI, 0.2, [11, 3, -22], 2524, 1024);
+addSpotLight(scene, 0xffffff, 60, Math.PI, 0.2, [-6, 3, -12], 2524, 1024);
 
 const dirLight = new THREE.DirectionalLight(0x55505a, 3)
 dirLight.position.set(0, 5 , 0)
@@ -227,7 +203,7 @@ dirLight.shadow.mapSize.height = 1024
 scene.add(dirLight)
 
 scene.background = new THREE.Color("rgb(245, 245, 220)")
-camera.position.set(5, 3, 17)
+camera.position.set(7, 3, 17)
 // camera.lookAt(2,0.13,10)
 // loading models
 let loadingIndicator = document.querySelector('.ld-ripple-container') 
@@ -308,8 +284,6 @@ loader.load("/main_scene/scene.gltf", (gltf)=>{
     scene.add(model)
 });
 
-
-
 // load the car model
 loader.load('/2017_kia_sportage/scene.gltf',(gltf)=>{
     const model = gltf.scene
@@ -357,121 +331,8 @@ loader.load('/man_win/scene.gltf',(gltf)=>{
 
     scene.add(model)
 })
-// Load the bed model
-loader.load('/bed/scene.gltf', (gltf) => {
-    const model = gltf.scene;
-    
-    // Position, rotate, and scale the tree
-    model.position.set(-60, 0.13 , 10); // Example position
-    model.rotation.set(0, 2.1, 0); // Example rotation
-    model.scale.set(1.3,1.3,1.3); // Example scale
-    
-    // Add the tree to the scene
-    scene.add(model);
 
-     // Add event listener to the renderer element
-     renderer.domElement.addEventListener('click', handleClick);
-
-     function handleClick(event) {
-         // Get mouse coordinates relative to the renderer element
-         const mouse = {
-             x: (event.clientX / renderer.domElement.clientWidth) * 2 - 1,
-             y: -(event.clientY / renderer.domElement.clientHeight) * 2 + 1,
-         };
- 
-         // Set up raycaster
-         const raycaster = new THREE.Raycaster();
-         raycaster.setFromCamera(mouse, camera);
- 
-         // Check for intersections
-         const intersects = raycaster.intersectObjects([model], true);
- 
-         // If model is clicked, navigate to another HTML page
-         if (intersects.length > 0) {
-            // window.location.href = ('/pages/bed.html',' _blank'); 
-             window.open('/pages/bed.html', '_blank'); // Open in a new tab
-
-         }
-     }
-});
-
-loader.load('/kitchen/scene.gltf', (gltf) => {
-    const model = gltf.scene;
-    
-    //Position, rotate, and scale the tree
-    model.position.set(-5, 0.13, 10)
-    model.rotation.set(0, -0.10, 0)
-    model.scale.set(0.08, 0.08, 0.08);
-    model.castShadow = true
-    controls.target.copy(model.position)// Example scale
-
-    // Add the tree to the scene
-    scene.add(model);
-
-     // Add event listener to the renderer element
-     renderer.domElement.addEventListener('click', handleClick);
-
-     function handleClick(event) {
-         // Get mouse coordinates relative to the renderer element
-         const mouse = {
-             x: (event.clientX / renderer.domElement.clientWidth) * 2 - 1,
-             y: -(event.clientY / renderer.domElement.clientHeight) * 2 + 1,
-         };
- 
-         // Set up raycaster
-         const raycaster = new THREE.Raycaster();
-         raycaster.setFromCamera(mouse, camera);
- 
-         // Check for intersections
-         const intersects = raycaster.intersectObjects([model], true);
- 
-         // If model is clicked, navigate to another HTML page
-         if (intersects.length > 0) {
-             window.open('/pages/kitchen1.html', '_blank'); // Open in a new tab
-
-         }
-     }
-});
-
-// Load the bed model
-loader.load('/set_sofa_v.001/scene.gltf', (gltf) => {
-    const model = gltf.scene;
-    
-    // Position, rotate, and scale the tree
-    //model.position.set(0, -0.13, 10) centre 
-    model.position.set(-20, 0.08, -6)
-    model.rotation.set(0, 0.4, 0)
-    model.scale.set(0.05, 0.05, 0.05);  
-    
-    // Add the tree to the scene
-    scene.add(model);
-
-     // Add event listener to the renderer element
-     renderer.domElement.addEventListener('click', handleClick);
-
-     function handleClick(event) {
-         // Get mouse coordinates relative to the renderer element
-         const mouse = {
-             x: (event.clientX / renderer.domElement.clientWidth) * 2 - 1,
-             y: -(event.clientY / renderer.domElement.clientHeight) * 2 + 1,
-         };
- 
-         // Set up raycaster
-         const raycaster = new THREE.Raycaster();
-         raycaster.setFromCamera(mouse, camera);
- 
-         // Check for intersections
-         const intersects = raycaster.intersectObjects([model], true);
- 
-         // If model is clicked, navigate to another HTML page
-         if (intersects.length > 0) {
-            // window.location.href = ('/pages/bed.html',' _blank'); 
-             window.open('/pages/set_sofa_v.html', '_blank'); // Open in a new tab
-
-         }
-     }
-});
-
+//BED'S
 loader.load('/bedroom/scene.gltf', (gltf) => {
     const model = gltf.scene;
     
@@ -510,13 +371,14 @@ loader.load('/bedroom/scene.gltf', (gltf) => {
      }
 });
 
-loader.load('/set_directors_desk_v.002/scene.gltf', (gltf) => {
+// SOFA'S
+loader.load('/set_sofa_v.001/scene.gltf', (gltf) => {
     const model = gltf.scene;
     
     // Position, rotate, and scale the tree
     //model.position.set(0, -0.13, 10) centre 
-    model.position.set(-20, -0.13, -40)
-    model.rotation.set(0, -1, 0)
+    model.position.set(-20, 0.08, -6)
+    model.rotation.set(0, 0.4, 0)
     model.scale.set(0.05, 0.05, 0.05);  
     
     // Add the tree to the scene
@@ -542,43 +404,7 @@ loader.load('/set_directors_desk_v.002/scene.gltf', (gltf) => {
          // If model is clicked, navigate to another HTML page
          if (intersects.length > 0) {
             // window.location.href = ('/pages/bed.html',' _blank'); 
-             window.open('/pages/set_directors_desk_v.html', '_blank'); // Open in a new tab
-
-         }
-     }
-});
-
-loader.load('/simple_house_-_kitchen/scene.gltf', (gltf) => {
-    const model = gltf.scene;
-    
-    model.position.set(30, 0.7, 25)
-    model.rotation.set(0, 0, 0)
-    model.scale.set(1.5, 1.5, 1.5);   
-    
-    // Add the tree to the scene
-    scene.add(model);
-
-     // Add event listener to the renderer element
-     renderer.domElement.addEventListener('click', handleClick);
-
-     function handleClick(event) {
-         // Get mouse coordinates relative to the renderer element
-         const mouse = {
-             x: (event.clientX / renderer.domElement.clientWidth) * 2 - 1,
-             y: -(event.clientY / renderer.domElement.clientHeight) * 2 + 1,
-         };
- 
-         // Set up raycaster
-         const raycaster = new THREE.Raycaster();
-         raycaster.setFromCamera(mouse, camera);
- 
-         // Check for intersections
-         const intersects = raycaster.intersectObjects([model], true);
- 
-         // If model is clicked, navigate to another HTML page
-         if (intersects.length > 0) {
-            // window.location.href = ('/pages/bed.html',' _blank'); 
-             window.open('/pages/simple_house_-_kitchen.html', '_blank'); // Open in a new tab
+             window.open('/pages/set_sofa_v.html', '_blank'); // Open in a new tab
 
          }
      }
@@ -621,6 +447,243 @@ loader.load('/walnut_wood_sofa_sf.001/scene.gltf', (gltf) => {
          }
      }
 });
+
+loader.load('/sofa_set_01/scene.gltf', (gltf) => {
+    const model = gltf.scene;
+    
+    //Position, rotate, and scale the tree
+    model.position.set(-34.1, -0.46, -3)
+    model.rotation.set(0, 0.5 , 0)
+    model.scale.set(1.2, 1.2, 1.2);
+    model.castShadow = true
+    controls.target.copy(model.position)// Example scale
+
+    // Add the tree to the scene
+    scene.add(model);
+});
+addSpotLight(scene, 0xffffff, 60, Math.PI, 0.2, [-40, -0.46, 2.15], 2524, 1024);
+addSpotLight(scene, 0xffffff, 60, Math.PI, 0.2, [-37, -0.46, 2.15], 2524, 1024);
+
+// DESK
+loader.load('/set_directors_desk_v.002/scene.gltf', (gltf) => {
+    const model = gltf.scene;
+    
+    // Position, rotate, and scale the tree
+    //model.position.set(0, -0.13, 10) centre 
+    model.position.set(-20, -0.13, -40)
+    model.rotation.set(0, -1, 0)
+    model.scale.set(0.05, 0.05, 0.05);  
+    
+    // Add the tree to the scene
+    scene.add(model);
+
+     // Add event listener to the renderer element
+     renderer.domElement.addEventListener('click', handleClick);
+
+     function handleClick(event) {
+         // Get mouse coordinates relative to the renderer element
+         const mouse = {
+             x: (event.clientX / renderer.domElement.clientWidth) * 2 - 1,
+             y: -(event.clientY / renderer.domElement.clientHeight) * 2 + 1,
+         };
+ 
+         // Set up raycaster
+         const raycaster = new THREE.Raycaster();
+         raycaster.setFromCamera(mouse, camera);
+ 
+         // Check for intersections
+         const intersects = raycaster.intersectObjects([model], true);
+ 
+         // If model is clicked, navigate to another HTML page
+         if (intersects.length > 0) {
+            // window.location.href = ('/pages/bed.html',' _blank'); 
+             window.open('/pages/set_directors_desk_v.html', '_blank'); // Open in a new tab
+
+         }
+     }
+});
+
+//KITCHENS
+loader.load('/simple_house_-_kitchen/scene.gltf', (gltf) => {
+    const model = gltf.scene;
+    
+    model.position.set(20, 0.7, 6)
+    model.rotation.set(0, -1.2, 0)
+    model.scale.set(1.5, 1.5, 1.5);   
+    
+    // Add the tree to the scene
+    scene.add(model);
+
+     // Add event listener to the renderer element
+     renderer.domElement.addEventListener('click', handleClick);
+
+     function handleClick(event) {
+         // Get mouse coordinates relative to the renderer element
+         const mouse = {
+             x: (event.clientX / renderer.domElement.clientWidth) * 2 - 1,
+             y: -(event.clientY / renderer.domElement.clientHeight) * 2 + 1,
+         };
+ 
+         // Set up raycaster
+         const raycaster = new THREE.Raycaster();
+         raycaster.setFromCamera(mouse, camera);
+ 
+         // Check for intersections
+         const intersects = raycaster.intersectObjects([model], true);
+ 
+         // If model is clicked, navigate to another HTML page
+         if (intersects.length > 0) {
+            // window.location.href = ('/pages/bed.html',' _blank'); 
+             window.open('/pages/simple_house_-_kitchen.html', '_blank'); // Open in a new tab
+
+         }
+     }
+});
+
+loader.load('/kitchen/scene.gltf', (gltf) => {
+    const model = gltf.scene;
+    
+    //Position, rotate, and scale the tree
+    model.position.set(5, 0.13, 10)
+    model.rotation.set(0, -1.2, 0)
+    model.scale.set(0.05, 0.05, 0.05);
+    model.castShadow = true
+    controls.target.copy(model.position)// Example scale
+
+    // Add the tree to the scene
+    scene.add(model);
+
+     // Add event listener to the renderer element
+     renderer.domElement.addEventListener('click', handleClick);
+
+     function handleClick(event) {
+         // Get mouse coordinates relative to the renderer element
+         const mouse = {
+             x: (event.clientX / renderer.domElement.clientWidth) * 2 - 1,
+             y: -(event.clientY / renderer.domElement.clientHeight) * 2 + 1,
+         };
+ 
+         // Set up raycaster
+         const raycaster = new THREE.Raycaster();
+         raycaster.setFromCamera(mouse, camera);
+ 
+         // Check for intersections
+         const intersects = raycaster.intersectObjects([model], true);
+ 
+         // If model is clicked, navigate to another HTML page
+         if (intersects.length > 0) {
+             window.open('/pages/kitchen1.html', '_blank'); // Open in a new tab
+
+         }
+     }
+});
+addSpotLight(scene, 0xffffff, 60, Math.PI, 0.2, [11, 0.13, 26], 2524, 1024);
+
+
+loader.load('/kitchenn/scene.gltf', (gltf) => {
+    const model = gltf.scene;
+    
+    //Position, rotate, and scale the tree
+    model.position.set(-3, 0.08, 30)
+    model.rotation.set(0, 3.6, 0)
+    model.scale.set(0.002, 0.002, 0.002);  
+    model.castShadow = true
+    controls.target.copy(model.position)// Example scale
+
+    // Add the tree to the scene
+    scene.add(model);
+
+     // Add event listener to the renderer element
+     renderer.domElement.addEventListener('click', handleClick);
+
+     function handleClick(event) {
+         // Get mouse coordinates relative to the renderer element
+         const mouse = {
+             x: (event.clientX / renderer.domElement.clientWidth) * 2 - 1,
+             y: -(event.clientY / renderer.domElement.clientHeight) * 2 + 1,
+         };
+ 
+         // Set up raycaster
+         const raycaster = new THREE.Raycaster();
+         raycaster.setFromCamera(mouse, camera);
+ 
+         // Check for intersections
+         const intersects = raycaster.intersectObjects([model], true);
+ 
+         // If model is clicked, navigate to another HTML page
+         if (intersects.length > 0) {
+             window.open('/pages/kitchenn.html', '_blank'); 
+
+         }
+     }
+});
+addSpotLight(scene, 0xffffff, 60, Math.PI, 0.2, [-3, 0.08, 30], 2524, 1024);
+
+
+loader.load('/modern_kitchen/scene.gltf', (gltf) => {
+    const model = gltf.scene;
+    
+    //Position, rotate, and scale the tree
+    model.position.set(47, 0.13, 13)
+    model.rotation.set(0, 2 , 0)
+    model.scale.set(1.2, 1.2, 1.2);
+    model.castShadow = true
+    controls.target.copy(model.position)// Example scale
+
+    // Add the tree to the scene
+    scene.add(model);
+});
+addSpotLight(scene, 0xffffff, 60, Math.PI, 0.2, [47, 0.13, 13], 2524, 1024);
+
+
+// Fonction générique pour charger et ajouter un modèle GLTF à la scène
+function addModel(path, position, rotation, scale, controls) {
+    loader.load(path, (gltf) => {
+        const model = gltf.scene;
+
+        // Position, rotation et échelle du modèle
+        model.position.set(position.x, position.y, position.z);
+        model.rotation.set(rotation.x, rotation.y, rotation.z);
+        model.scale.set(scale.x, scale.y, scale.z);
+        model.castShadow = true;
+
+        // Mise à jour de la cible des contrôles
+        controls.target.copy(model.position);
+
+        // Ajouter le modèle à la scène
+        scene.add(model);
+    });
+}
+
+// Fonction pour ajouter des fenêtres
+function addGlassWindow(position, rotation, scale, controls) {
+    addModel('/glass_window/scene.gltf', position, rotation, scale, controls);
+}
+
+// Fonction pour ajouter des tapis
+function addCarpet(position, rotation, scale, controls) {
+    addModel('/carpet__-_medieval_fantasy_challenge/scene.gltf', position, rotation, scale, controls);
+}
+
+// Utiliser les fonctions pour ajouter des fenêtres et des tapis
+addGlassWindow({ x: 35, y: -0.5, z: -2 }, { x: 0, y: -1.2, z: 0 }, { x: 5, y: 5, z: 5 }, controls);
+addGlassWindow({ x: 8, y: -0.5, z: 8.5 }, { x: 0, y: -1.2, z: 0 }, { x: 5, y: 5, z: 5 }, controls);
+addGlassWindow({ x: -19, y: -0.5, z: 19.1 }, { x: 0, y: -1.2, z: 0 }, { x: 5, y: 5, z: 5 }, controls);
+
+addGlassWindow({ x: 9.5, y: -0.5, z: -53 }, { x: 0, y: -1.2, z: 0 }, { x: 5, y: 5, z: 5 }, controls);
+addGlassWindow({ x: -16.9, y: -0.5, z: -43.1 }, { x: 0, y: -1.2, z: 0 }, { x: 5, y: 5, z: 5 }, controls);
+addGlassWindow({ x: -44, y: -0.5, z: -32.7 }, { x: 0, y: -1.2, z: 0 }, { x: 5, y: 5, z: 5 }, controls);
+
+addCarpet({ x: -50, y: 0.05, z: -55 }, { x: 0, y: -1.2, z: 0 }, { x: 1, y: 1, z: 1 }, controls);
+addCarpet({ x: -33.6, y: 0.05, z: -61.35 }, { x: 0, y: -1.2, z: 0 }, { x: 1, y: 1, z: 1 }, controls);
+addCarpet({ x: -15, y: 0.05, z: -68.6 }, { x: 0, y: -1.2, z: 0 }, { x: 1, y: 1, z: 1 }, controls);
+addCarpet({ x: 3.65, y: 0.05, z: -75.9 }, { x: 0, y: -1.2, z: 0 }, { x: 1, y: 1, z: 1 }, controls);
+
+addCarpet({ x: -57, y: 0.05, z: -75 }, { x: 0, y: -1.2, z: 0 }, { x: 1, y: 1, z: 1 }, controls);
+addCarpet({ x: -38.5, y: 0.05, z: -82.2 }, { x: 0, y: -1.2, z: 0 }, { x: 1, y: 1, z: 1 }, controls);
+addCarpet({ x: -19.9, y: 0.05, z: -89.5 }, { x: 0, y: -1.2, z: 0 }, { x: 1, y: 1, z: 1 }, controls);
+addCarpet({ x: -1.55, y: 0.05, z: -96.68 }, { x: 0, y: -1.2, z: 0 }, { x: 1, y: 1, z: 1 }, controls);
+
 
 function animate() {
     const delta = clock.getDelta();

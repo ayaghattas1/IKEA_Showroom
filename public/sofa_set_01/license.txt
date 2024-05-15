@@ -1,0 +1,11 @@
+Model Information:
+* title:	Sofa Set 01
+* source:	https://sketchfab.com/3d-models/sofa-set-01-6784c09b84a342ee8f0509f5181e5c63
+* author:	5th Dimension (https://sketchfab.com/5th_Dimesion)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Sofa Set 01" (https://sketchfab.com/3d-models/sofa-set-01-6784c09b84a342ee8f0509f5181e5c63) by 5th Dimension (https://sketchfab.com/5th_Dimesion) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
