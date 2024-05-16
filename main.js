@@ -331,6 +331,16 @@ loader.load('/man_win/scene.gltf',(gltf)=>{
 
     scene.add(model)
 })
+loader.load('/cadeau/scene.gltf',(gltf)=>{
+    const model = gltf.scene
+    model.position.set(-2, 0.13, 5)
+    model.rotation.set(0, 1, 0)
+    model.scale.set(0.7, 0.7, 0.7)
+    model.castShadow = true
+    controls.target.copy(model.position)
+
+    scene.add(model)
+})
 
 //BED'S
 loader.load('/bedroom/scene.gltf', (gltf) => {
@@ -372,6 +382,34 @@ loader.load('/bedroom/scene.gltf', (gltf) => {
 });
 
 // SOFA'S
+loader.load('/low_poly_living_room_with_furniture/scene.gltf', (gltf) => {
+    const model = gltf.scene;
+    
+    //Position, rotate, and scale the tree
+    model.position.set(10, 0.5, -20)
+    model.rotation.set(0, 0.4 , 0)
+    model.scale.set(1.75, 1.75, 1.75);
+    model.castShadow = true
+    controls.target.copy(model.position)// Example scale
+
+    // Add the tree to the scene
+    scene.add(model);
+});
+// addSpotLight(scene, 0xffffff, 60, Math.PI, 0.2, [-20, -0.13, -40], 2524, 1024);
+loader.load('/woman3/scene.gltf', (gltf) => {
+    const model = gltf.scene;
+    
+    //Position, rotate, and scale the tree
+    model.position.set(-30, 0.08, -2)
+    model.rotation.set(0, 0.35, 0)
+    model.scale.set(0.02, 0.02, 0.02);
+    model.castShadow = true
+    controls.target.copy(model.position)// Example scale
+
+    // Add the tree to the scene
+    scene.add(model);
+});
+
 loader.load('/set_sofa_v.001/scene.gltf', (gltf) => {
     const model = gltf.scene;
     
@@ -408,6 +446,19 @@ loader.load('/set_sofa_v.001/scene.gltf', (gltf) => {
 
          }
      }
+});
+loader.load('/woman2/scene.gltf', (gltf) => {
+    const model = gltf.scene;
+    
+    //Position, rotate, and scale the tree
+    model.position.set(-12, 0.08, -6)
+    model.rotation.set(0, 0.35, 0)
+    model.scale.set(2, 2, 2);
+    model.castShadow = true
+    controls.target.copy(model.position)// Example scale
+
+    // Add the tree to the scene
+    scene.add(model);
 });
 
 loader.load('/walnut_wood_sofa_sf.001/scene.gltf', (gltf) => {
@@ -448,13 +499,24 @@ loader.load('/walnut_wood_sofa_sf.001/scene.gltf', (gltf) => {
      }
 });
 
+loader.load('/indian_man_in_suit/scene.gltf',(gltf)=>{
+    const model = gltf.scene
+   model.position.set(-12, 0.08, -6)
+   model.rotation.set(0, 0.35, 0)
+   model.scale.set(2, 2, 2);
+    model.castShadow = true
+    controls.target.copy(model.position)
+
+    scene.add(model)
+});
+
 loader.load('/sofa_set_01/scene.gltf', (gltf) => {
     const model = gltf.scene;
     
     //Position, rotate, and scale the tree
-    model.position.set(-34.1, -0.46, -3)
-    model.rotation.set(0, 0.5 , 0)
-    model.scale.set(1.2, 1.2, 1.2);
+    model.position.set(-34.1, 0.3, -3)
+    model.rotation.set(0, 0.55 , 0)
+    model.scale.set(1, 1, 1);
     model.castShadow = true
     controls.target.copy(model.position)// Example scale
 
@@ -470,8 +532,8 @@ loader.load('/set_directors_desk_v.002/scene.gltf', (gltf) => {
     
     // Position, rotate, and scale the tree
     //model.position.set(0, -0.13, 10) centre 
-    model.position.set(-20, -0.13, -40)
-    model.rotation.set(0, -1, 0)
+    model.position.set(-27, -0.13, -55)
+    model.rotation.set(0, -1.1, 0)
     model.scale.set(0.05, 0.05, 0.05);  
     
     // Add the tree to the scene
@@ -502,6 +564,7 @@ loader.load('/set_directors_desk_v.002/scene.gltf', (gltf) => {
          }
      }
 });
+//addSpotLight(scene, 0xffffff, 60, Math.PI, 0.2, [-27, -0.13, -55], 2524, 1024);
 
 //KITCHENS
 loader.load('/simple_house_-_kitchen/scene.gltf', (gltf) => {
@@ -635,6 +698,19 @@ loader.load('/modern_kitchen/scene.gltf', (gltf) => {
 });
 addSpotLight(scene, 0xffffff, 60, Math.PI, 0.2, [47, 0.13, 13], 2524, 1024);
 
+loader.load('/woman/scene.gltf', (gltf) => {
+    const model = gltf.scene;
+    
+    //Position, rotate, and scale the tree
+    model.position.set(47, 0.13, 13)
+    model.rotation.set(0, 3 , 0)
+    model.scale.set(1.2, 1.2, 1.2);
+    model.castShadow = true
+    controls.target.copy(model.position)// Example scale
+
+    // Add the tree to the scene
+    scene.add(model);
+});
 
 // Fonction générique pour charger et ajouter un modèle GLTF à la scène
 function addModel(path, position, rotation, scale, controls) {
