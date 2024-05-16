@@ -1,0 +1,11 @@
+Model Information:
+* title:	Modern Bedroom
+* source:	https://sketchfab.com/3d-models/modern-bedroom-714b70694e2943c68cfc3ed31234dbce
+* author:	RaynaudL (https://sketchfab.com/fts_ltx)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Modern Bedroom" (https://sketchfab.com/3d-models/modern-bedroom-714b70694e2943c68cfc3ed31234dbce) by RaynaudL (https://sketchfab.com/fts_ltx) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

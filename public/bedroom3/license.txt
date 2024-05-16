@@ -1,0 +1,11 @@
+Model Information:
+* title:	Purple Bedroom
+* source:	https://sketchfab.com/3d-models/purple-bedroom-97357aafa4ae4e4ab2ffe81c9e8a13ef
+* author:	Disciple of Mana (https://sketchfab.com/discipleofmana)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Purple Bedroom" (https://sketchfab.com/3d-models/purple-bedroom-97357aafa4ae4e4ab2ffe81c9e8a13ef) by Disciple of Mana (https://sketchfab.com/discipleofmana) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

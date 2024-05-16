@@ -1,0 +1,11 @@
+Model Information:
+* title:	Bedroom1
+* source:	https://sketchfab.com/3d-models/bedroom1-ee4da922920b4d31a418dbf2a3c7adb4
+* author:	binsurf (https://sketchfab.com/binsurf)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Bedroom1" (https://sketchfab.com/3d-models/bedroom1-ee4da922920b4d31a418dbf2a3c7adb4) by binsurf (https://sketchfab.com/binsurf) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
