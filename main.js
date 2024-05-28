@@ -15,7 +15,7 @@ const sceneLimitXMin = -100;
 const sceneLimitXMax = 100;
 const sceneLimitZMin = -100;
 const sceneLimitZMax = 100;
-const clock = new THREE.Clock(); // N'oubliez pas d'initialiser la clock quelque part dans votre code
+const clock = new THREE.Clock(); 
 const planeGeometry = new THREE.PlaneGeometry(1000, 1000);
 const planeMaterial = new THREE.MeshBasicMaterial({ visible: false });
 const plane = new THREE.Mesh(planeGeometry, planeMaterial);
@@ -33,7 +33,6 @@ renderer.domElement.addEventListener('dblclick', function(event) {
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
-    // Raycasting
     raycaster.setFromCamera(mouse, camera);
     const intersects = raycaster.intersectObject(plane);
 
@@ -248,17 +247,13 @@ scene.add(mesh)
 const controls = new OrbitControls( camera, renderer.domElement );
  controls.enableDaming = true
  controls.screenPanning = true
- //controls.enabled = false;
-
-// controls.minDistance = 9
-// controls.maxDistance = 14
 
 // limit vertical rotation
 controls.minPolarAngle = Math.PI / 4
 controls.maxPolarAngle = Math.PI / 2
 controls.rotateSpeed = 0.4
 
-//add animatiobns
+//add animations
 const info = document.querySelector('.info')
 const specs = document.querySelector('.specs')
 controls.addEventListener("start",()=>{
@@ -537,7 +532,7 @@ loader.load('/sofa_set_01/scene.gltf', (gltf) => {
     
     //Position, rotate, and scale the tree
     model.position.set(-34.1, 0.3, -3)
-    model.rotation.set(0, 0.55 , 0)
+    model.rotation.set(0, 0.5 , 0)
     model.scale.set(1, 1, 1);
     model.castShadow = true
     controls.target.copy(model.position)// Example scale
@@ -554,8 +549,8 @@ loader.load('/set_directors_desk_v.002/scene.gltf', (gltf) => {
     
     // Position, rotate, and scale the tree
     //model.position.set(0, -0.13, 10) centre 
-    model.position.set(-27, -0.13, -55)
-    model.rotation.set(0, -1.1, 0)
+    model.position.set(0, -0.13, -53)
+    model.rotation.set(0, -1.3, 0)
     model.scale.set(0.05, 0.05, 0.05);  
     
     // Add the tree to the scene

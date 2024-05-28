@@ -99,7 +99,7 @@ function checkBounds() {
 const cameraSpeed = 5;
 
 function updateCameraPosition(delta) {
-    if (!delta) delta = clock.getDelta(); // S'assure que delta est défini
+    if (!delta) delta = clock.getDelta();
     // Calcul des vecteurs de déplacement avant et latéral basés sur l'orientation de la caméra
     let forward = new THREE.Vector3();
     camera.getWorldDirection(forward);
@@ -281,11 +281,8 @@ loader.load('../2017_kia_sportage/scene.gltf',(gltf)=>{
         let sofaColor = {r:1, g:1, b:1}; // Couleur de départ du canapé
         model.traverse((child) => {
             if (child.isMesh) {
-                // Vérifiez si le matériau est basé sur MeshStandardMaterial
                 if (child.material.isMeshStandardMaterial) {
-                    // Assurez-vous que le matériau ait une propriété de couleur
                     if (child.material.color) {
-                        // Appliquer la couleur initiale
                         child.material.color.set(sofaColor);
                     }
                 }
@@ -294,16 +291,12 @@ loader.load('../2017_kia_sportage/scene.gltf',(gltf)=>{
     
         colors.forEach(el => {
             el.addEventListener('click', (e) => {
-                // Mettez à jour la couleur du canapé lorsque vous cliquez sur une couleur
                 const colorName = e.target.id;
                 sofaColor = selectColor(colorName);
                 model.traverse((child) => {
                     if (child.isMesh) {
-                        // Vérifiez si le matériau est basé sur MeshStandardMaterial
                         if (child.material.isMeshStandardMaterial) {
-                            // Assurez-vous que le matériau ait une propriété de couleur
                             if (child.material.color) {
-                                // Appliquer la nouvelle couleur
                                 gsap.to(child.material.color, { duration: 2, r: sofaColor.r, g: sofaColor.g, b: sofaColor.b, ease: "sine.out" });
                             }
                         }
@@ -322,7 +315,6 @@ loader.load('../2017_kia_sportage/scene.gltf',(gltf)=>{
     
         scene.add(model)
     
-    // Add the tree to the scene
     scene.add(model);
 
 });
