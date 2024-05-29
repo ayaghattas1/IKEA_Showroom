@@ -338,7 +338,7 @@ loader.load('/cadeau/scene.gltf',(gltf)=>{
 })
 loader.load('/people/scene.gltf',(gltf)=>{
     const model = gltf.scene
-    model.position.set(-35, 0.13, 16)
+    model.position.set(-40, 0.13, 16)
     model.rotation.set(0, 1.7, 0)
     model.scale.set(0.03, 0.03, 0.03)
     model.castShadow = true
@@ -363,8 +363,8 @@ loader.load('/woman/scene.gltf', (gltf) => {
 
 loader.load('/indian_man_in_suit/scene.gltf',(gltf)=>{
     const model = gltf.scene
-   model.position.set(-40, 0.08, 15)
-   model.rotation.set(0, 0, 0)
+   model.position.set(-30, 0.13, 15)
+   model.rotation.set(0, 5, 0)
    model.scale.set(0.8, 0.8, 0.8);
     model.castShadow = true
     controls.target.copy(model.position)
